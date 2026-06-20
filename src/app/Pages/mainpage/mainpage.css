@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
-
+/* Using system fonts instead of external Google Fonts */
 :host {
   --teal-1: #1f5c5c;
   --teal-2: #287373;
