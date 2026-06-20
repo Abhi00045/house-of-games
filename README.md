@@ -16,3 +16,5 @@ Players can:
 - Experience Real-Time Updates
 
 The platform is built with Angular, FastAPI, WebSockets, MongoDB, and Docker.
+
+https://app.notion.com/p/HOUSE-GAME-Angular-385762a9c6e880129449e0419e310eb5?source=copy_link
