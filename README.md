@@ -1,95 +1,18 @@
-flowchart LR
+# FAFi 🎮
 
-    Client[Angular Frontend]
+FAFi (Fun Among Friends) is a real-time multiplayer gaming platform where players can create or join rooms and play social party games with friends.
 
-    Client --> REST[FastAPI REST API]
-    Client --> WS[WebSocket Socket.IO]
+The platform starts with Codenames and is designed to support additional multiplayer games such as Monopoly, Mafia, Scribble, Chess, and custom community-created games.
 
-    REST --> RoomService
-    REST --> UserService
+FAFi focuses on simplicity, real-time communication, anonymous gameplay, and scalable room-based architecture.
 
-    WS --> RealtimeGateway
+Players can:
 
-    RealtimeGateway --> GameEngine
+- Create Rooms
+- Join Rooms
+- Chat with Friends
+- Customize Display Names
+- Play Multiplayer Games
+- Experience Real-Time Updates
 
-    RoomService --> MongoDB[(MongoDB)]
-    UserService --> MongoDB
-
-    GameEngine --> MongoDB
-
-flowchart TD
-
-    A[User Opens FAFi]
-
-    A --> B[Game Selection Page]
-
-    B --> C[Codenames]
-    B --> D[Monopoly]
-    B --> E[Mafia]
-    B --> F[Chess]
-
-    C --> G[Create Room]
-    C --> H[Join Room]
-
-    G --> I[Generate Room Code]
-    H --> I
-
-    I --> J[/games/codenames/room/:code]
-
-    J --> K[Room Lobby]
-
-    K --> L[Player List]
-    K --> M[Chat System]
-    K --> N[Settings]
-    K --> O[Start Game]
-
-    N --> P[Change Username]
-    N --> Q[Theme Settings]
-
-    O --> R[Codenames Game Session]
-
-    R --> S[Game Board]
-    R --> T[Team Panel]
-    R --> U[Turn Manager]
-    R --> V[Realtime Chat]
-
-    S --> W[Reveal Card]
-
-    W --> X[Game Engine]
-
-    X --> Y[Win Condition Check]
-
-    Y --> Z[Results Screen]
-
-    Z --> AA[Play Again]
-    Z --> AB[Exit Room]
-
-sequenceDiagram
-
-    participant User1
-    participant Angular
-    participant Socket
-    participant GameEngine
-    participant MongoDB
-
-    User1->>Angular: Click Create Room
-    Angular->>Socket: create_room
-    Socket->>MongoDB: Save Room
-    MongoDB-->>Socket: Room Created
-    Socket-->>Angular: Room Code
-
-    User1->>Angular: Start Game
-    Angular->>GameEngine: start_match
-    GameEngine->>MongoDB: Generate Board
-    GameEngine-->>Socket: Match Started
-
-    Socket-->>Angular: Update All Players
-
-    User1->>Angular: Select Card
-    Angular->>Socket: reveal_card
-
-    Socket->>GameEngine: Validate Move
-
-    GameEngine-->>Socket: Updated State
-
-    Socket-->>All Players: Realtime Update
+The platform is built with Angular, FastAPI, WebSockets, MongoDB, and Docker.
