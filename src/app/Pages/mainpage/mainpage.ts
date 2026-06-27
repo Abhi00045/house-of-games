@@ -4,6 +4,7 @@
 
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface GameOption {
   id: string;
@@ -20,7 +21,10 @@ interface GameOption {
 })
 
 export class Mainpage {
-  playersOnline = 5820;
+
+  constructor(private router: Router) {}
+
+  playersOnline = 0;
 
   games: GameOption[] = [
     { id: 'codenames', name: 'Codenames', icon: '🕵️', tagline: 'Spy. Guess. Win.' },
@@ -45,13 +49,14 @@ export class Mainpage {
     }
     // Hook this up to your routing / websocket service to find an open room.
     console.log('Joining a room for', this.selectedGame.name);
+    this.router.navigate(['join-room']);
   }
 
   createRoom(): void {
     if (!this.selectedGame) {
       return;
     }
-    // Hook this up to your routing / websocket service to spin up a new room.
+    this.router.navigate(['create-room']);
     console.log('Creating a room for', this.selectedGame.name);
   }
 }
