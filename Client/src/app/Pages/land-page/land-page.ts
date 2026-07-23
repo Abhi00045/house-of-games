@@ -8,9 +8,11 @@ import {
   HostListener,
   Input,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { CreateRoom } from "../../components/create-room/create-room";
+import { JoinRoom } from "../../components/join-room/join-room";
 
 interface Star {
   x: number;
@@ -22,7 +24,7 @@ interface Star {
 
 @Component({
   selector: 'app-land-page',
-  imports: [RouterModule],
+  imports: [RouterModule, CreateRoom, CreateRoom, NgIf, JoinRoom],
   templateUrl: './land-page.html',
   styleUrl: './land-page.css',
 })
@@ -36,12 +38,6 @@ export class LandPage implements AfterViewInit, OnDestroy {
   private ctx!: CanvasRenderingContext2D;
   private stars: Star[] = [];
   private rafId = 0;
-
-// menuItems = [
-//   { label: 'JOIN ROOM',    action: 'join',    handler: () => this.joinRoom()   },
-//   { label: 'CREATE ROOM',  action: 'create',  handler: () => this.createRoom() },
-//   { label: 'FIND ROOM',    action: 'find',    handler: () => this.findRoom()   },
-// ];
 
 // -----------------------------------------------------------------------------------------------------------------
   activeIndex = 2;
@@ -59,19 +55,6 @@ export class LandPage implements AfterViewInit, OnDestroy {
     this.resize();
     this.initStars();
   }
-
-  // @HostListener('window:keydown', ['$event'])
-  // onKey(e: KeyboardEvent): void {
-  //   if (e.key === 'ArrowUp') {
-  //     this.activeIndex = (this.activeIndex - 1 + this.menuItems.length) % this.menuItems.length;
-  //     e.preventDefault();
-  //   } else if (e.key === 'ArrowDown') {
-  //     this.activeIndex = (this.activeIndex + 1) % this.menuItems.length;
-  //     e.preventDefault();
-  //   } else if (e.key === 'Enter' || e.key === ' ') {
-  //     this.onSelect(this.menuItems[this.activeIndex]);
-  //   }
-  // }
 
   setActive(i: number): void { this.activeIndex = i; }
 
@@ -116,35 +99,18 @@ export class LandPage implements AfterViewInit, OnDestroy {
     cancelAnimationFrame(this.rafId);
   }
 
-  // ---------------------------------------------------------------------------------------------------------------
-  //main functions
-
-
-    joinRoom(): void {
-    this.router.navigate(['join-room']);
-    console.log("join room ");
-    
+  showCreateRoom = false
+  createRoomBtn(): void {
+    this.showCreateRoom=true;
   }
-
-  createRoom(): void {
-    this.router.navigate(['create-room']);
-    
-    const createRoomId= (length: number = 6)=>{
-      const characters = 'ABCDE0123456789';
-      let roomId = '';
-
-      for(let i =0;i<length; i++){
-        let randomIndex = Math.floor(Math.random()* characters.length);
-        roomId += characters[randomIndex]
-      }
-      return roomId;
-    }
-    const roomId = createRoomId();
-    console.log("created room", roomId);
-
+  closeCreateRoom() {
+  this.showCreateRoom = false;
+}
+showJoinRoom = false
+joinRoom(): void {
+     this.showJoinRoom=true;
   }
-  findRoom(): void{
-    console.log("going on");
-    
+  closeJoinRoom(){
+    this.showJoinRoom= false;
   }
 }

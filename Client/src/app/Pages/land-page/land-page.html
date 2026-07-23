@@ -1,4 +1,5 @@
 <!-- Starfield canvas -->
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=content_copy" />
  <div>
 <canvas #canvas class="starfield"></canvas>
 
@@ -72,7 +73,7 @@
 </svg>
 
 <!-- Couple silhouette -->
-<svg class="couple" width="260" height="200" viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+<!-- <svg class="couple" width="260" height="200" viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
   <ellipse cx="85"  cy="42" rx="22" ry="24" fill="#0d0720"/>
   <path d="M55 200 Q63 110 85 95 Q107 110 115 200Z" fill="#0d0720"/>
   <path d="M108 140 Q130 148 148 145" stroke="#0d0720" stroke-width="12" fill="none" stroke-linecap="round"/>
@@ -82,7 +83,7 @@
   <rect x="20"  y="185" width="220" height="10" rx="3" fill="#0d0720"/>
   <rect x="35"  y="185" width="8"   height="20" fill="#0d0720"/>
   <rect x="215" y="185" width="8"   height="20" fill="#0d0720"/>
-</svg>
+</svg> -->
 
 <!-- Health bar -->
 <div class="health-bar">
@@ -101,13 +102,20 @@
   <button class="menu-item" type="button" (mouseenter)="setActive(0)" [class.active]="activeIndex === 0" (click)="setActive(0); joinRoom()">
     <span class="arrow">&#9658;</span><span class="label">JOIN ROOM</span>
   </button>
-  <button class="menu-item" type="button" (mouseenter)="setActive(1)" [class.active]="activeIndex === 1" (click)="setActive(1); createRoom()">
+  <button class="menu-item" type="button" (mouseenter)="setActive(1)" [class.active]="activeIndex === 1" (click)="setActive(1); createRoomBtn()">
     <span class="arrow">&#9658;</span><span class="label">CREATE ROOM</span>
   </button>
-  <button class="menu-item" type="button" (mouseenter)="setActive(2)" [class.active]="activeIndex === 2" (click)="setActive(2); findRoom()">
+  <button class="menu-item" type="button" (mouseenter)="setActive(2)" [class.active]="activeIndex === 2" (click)="setActive(2); joinRoom()">
     <span class="arrow">&#9658;</span><span class="label">FIND ROOM</span>
   </button>
 </nav>
 </nav>
 </div>
+
+<app-create-room
+*ngIf="showCreateRoom"
+(close) ="closeCreateRoom()"
+></app-create-room>
+
+<app-join-room *ngIf="showJoinRoom" (close)="closeJoinRoom()"></app-join-room>
 

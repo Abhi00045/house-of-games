@@ -1,1 +1,51 @@
-<p>join-room works!</p>
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+    <button 
+      (click)="closePopup()"
+      class="absolute right-5 top-5 bg-center flex text-black-400 p-1 bg-red-400 hover:text-white" 
+      style="border-radius: 25px;
+    
+      ">
+      ✕
+    </button>
+
+  <div class="relative w-[360px] rounded-2xl border border-purple-500/40 bg-[#17121f]/95 p-6 shadow-[0_0_50px_rgba(168,85,247,0.35)]">
+
+    <!-- Close -->
+
+
+
+    <!-- Header -->
+    <h2 class="mb-2 text-center text-lg font-semibold text-white">
+      Join Room
+    </h2>
+
+    <p class="mb-6 text-center text-sm text-gray-400">
+      Enter your room ID to join
+    </p>
+
+
+    <!-- Input -->
+    <input
+      type="text"
+      placeholder="Enter Room ID"
+      class="mb-5 w-full rounded-lg border border-purple-500/20 bg-[#21182b] px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition focus:border-purple-500" [(ngModel)]="roomId"
+    >
+
+
+    <!-- Button -->
+    <button
+      class="w-full rounded-lg bg-white py-3 text-sm font-semibold text-black transition hover:bg-gray-200" (onClick)="joinRoom()">
+      Join Room
+    </button>
+
+
+    <!-- Cancel -->
+    <button
+      (click)="closePopup()"
+      class="mt-5 w-full text-sm text-gray-400 hover:text-white">
+      Cancel
+    </button>
+
+  </div>
+
+</div>

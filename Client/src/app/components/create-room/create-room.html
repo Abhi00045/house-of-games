@@ -1,11 +1,61 @@
-<div id="main div">
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=content_copy" />
 
-    <form action="" method="post" [formGroup]="roomForm">
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
 
-        <input type="text" formControlName="roomID" placeholder={(this.roomForm.roomID)}>
-        <input type="text" placeholder="Room Name">
-        <input type="text" placeholder="User Name">
-        <button type="submit" >Create Room</button>
-    </form>
+     <button 
+      (click)="closePopup()"
+      class="absolute right-5 top-5 bg-center flex text-black-400 p-1 bg-red-400 hover:text-white" 
+      style="border-radius: 25px;
+    
+      ">
+      ✕
+    </button>
+
+  <form 
+    action="" 
+    method="post" 
+    [formGroup]="roomForm"
+    class="w-[360px] rounded-2xl border border-purple-500/40 bg-[#17121f] p-6 shadow-[0_0_40px_rgba(168,85,247,0.35)]"
+  >
+
+    <!-- <h2 class="mb-2 text-center text-lg font-semibold text-white">
+      Create Room
+    </h2> -->
+
+    <p class="mb-5 text-center text-sm text-gray-400">
+      setpfp
+    </p>
+
+    <input 
+      type="text"
+      formControlName="roomID"
+      readonly
+      class="mb-3 w-full rounded-lg border border-gray-700 bg-[#21182b] px-4 py-3 text-sm text-gray-300 outline-none"
+      >
+
+    <input 
+      type="text"
+      placeholder="Room Name"
+      formControlName="roomName"
+      class="mb-3 w-full rounded-lg border border-gray-700 bg-[#21182b] px-4 py-3 text-sm text-white placeholder-gray-500 outline-none focus:border-purple-500"
+    >
+
+    <input 
+      type="text"
+      placeholder="User Name"
+      formControlName="userName"
+      class="mb-5 w-full rounded-lg border border-gray-700 bg-[#21182b] px-4 py-3 text-sm text-white placeholder-gray-500 outline-none focus:border-purple-500"
+    >
+
+    <button 
+      type="submit" 
+      (click)="createRoom()"
+      class="w-full rounded-lg bg-white py-3 text-sm font-semibold text-black transition hover:bg-gray-200"
+    >
+      Create Room
+    </button>
+
+  </form>
+
 </div>

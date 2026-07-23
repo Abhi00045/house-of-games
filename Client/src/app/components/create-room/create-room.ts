@@ -1,34 +1,53 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { required, validate, validateHttp } from '@angular/forms/signals';
+import { Room } from '../../Services/room';
+import { Router, RouterModule } from '@angular/router';
 // import { RouterOutlet } from "../../../../node_modules/@angular/router/types/_router_module-chunk";
 
 @Component({
   selector: 'app-create-room',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './create-room.html',
   styleUrl: './create-room.css',
 })
 export class CreateRoom {
 
-  // generateRoomId(length:number=6){
-  //   const char = 'ABCDEFGHIJK1234567890';
-  //  let id = '';
 
-  //   for (let i =0;i<length; i++){
-  //     const randomIndex = Math.floor(Math.random()*char.length);
-  //     id += char[randomIndex]
-  //   }
+  constructor(private roomService: Room,
+    private router:Router
+  ){}
 
-  //   const roomID = this.generateRoomId();
-  //   console.log(roomID);
-  // }
+
+  //generating room ID
+  createRoomId= (length: number = 5)=>{
+      const characters = 'ABCDEFGHIJKL123456789';
+      let roomId = '';
+
+      for(let i =0;i<length; i++){
+        let randomIndex = Math.floor(Math.random()* characters.length);
+        roomId += characters[randomIndex]
+      }
+      return roomId;
+    }
+   @Input() roomId:string=this.createRoomId();
 
   roomForm = new FormGroup({
      
-    roomID: new FormControl(""),
-    roomName: new FormControl(""),
-    userName: new FormControl("")
+    roomID: new FormControl(this.roomId),
+    roomName: new FormControl("", Validators.required),
+    userName: new FormControl("", Validators.required)
 
   })
-  
+  createRoom(){
+     const id = this.roomForm.get('roomID')?.value;
+     this.roomService.setRoomId(this.roomId);
+    //  console.log("Created Room:", id);
+    this.router.navigate(['game'])
+  }
+
+  @Output() close = new EventEmitter<void>();
+  closePopup() {
+    this.close.emit();
+  }
 }
