@@ -22,19 +22,21 @@
     <p class="mb-6 text-center text-sm text-gray-400">
       Enter your room ID to join
     </p>
+    
 
 
     <!-- Input -->
     <input
       type="text"
       placeholder="Enter Room ID"
-      class="mb-5 w-full rounded-lg border border-purple-500/20 bg-[#21182b] px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition focus:border-purple-500" [(ngModel)]="roomId"
+      class="mb-5 w-full rounded-lg border border-purple-500/20 bg-[#21182b] px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition focus:border-purple-500" 
+      
     >
 
 
     <!-- Button -->
     <button
-      class="w-full rounded-lg bg-white py-3 text-sm font-semibold text-black transition hover:bg-gray-200" (onClick)="joinRoom()">
+      class="w-full rounded-lg bg-white py-3 text-sm font-semibold text-black transition hover:bg-gray-200">
       Join Room
     </button>
 

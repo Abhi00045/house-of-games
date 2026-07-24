@@ -16,13 +16,13 @@ export class JoinRoom {
   ){}
 
   ngOnInit(){
-    const existingId = this.roomService.checkRooms(this.roomId);
-    console.log(existingId); 
+    // const existingId = this.roomService.checkRooms(this.roomId);
+    // console.log(existingId); 
   }
 
   joinRoom(from:any){
      
-
+console.log("cool")
   }
 
   

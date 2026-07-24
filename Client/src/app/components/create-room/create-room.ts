@@ -3,11 +3,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { required, validate, validateHttp } from '@angular/forms/signals';
 import { Room } from '../../Services/room';
 import { Router, RouterModule } from '@angular/router';
+import { AvatarChange } from "../avatar-change/avatar-change";
 // import { RouterOutlet } from "../../../../node_modules/@angular/router/types/_router_module-chunk";
 
 @Component({
   selector: 'app-create-room',
-  imports: [ReactiveFormsModule, RouterModule],
+  imports: [ReactiveFormsModule, RouterModule, AvatarChange, AvatarChange],
   templateUrl: './create-room.html',
   styleUrl: './create-room.css',
 })

@@ -5,8 +5,9 @@
 
      <button 
       (click)="closePopup()"
-      class="absolute right-5 top-5 bg-center flex text-black-400 p-1 bg-red-400 hover:text-white" 
+      class="absolute right-5 top-5 text-2xl text-purple-400 hover:text-white" 
       style="border-radius: 25px;
+      
     
       ">
       ✕
@@ -16,16 +17,14 @@
     action="" 
     method="post" 
     [formGroup]="roomForm"
-    class="w-[360px] rounded-2xl border border-purple-500/40 bg-[#17121f] p-6 shadow-[0_0_40px_rgba(168,85,247,0.35)]"
+    class="w-[360px] flex flex-col gap-4 items-center rounded-2xl border border-purple-500/40 bg-[#17121f] p-6 shadow-[0_0_40px_rgba(168,85,247,0.35)]"
   >
 
     <!-- <h2 class="mb-2 text-center text-lg font-semibold text-white">
       Create Room
     </h2> -->
 
-    <p class="mb-5 text-center text-sm text-gray-400">
-      setpfp
-    </p>
+    <app-avatar-change></app-avatar-change>
 
     <input 
       type="text"
